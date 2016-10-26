@@ -1,3 +1,4 @@
+from sys import argv
 import json
 import requests
 import ast
@@ -39,3 +40,16 @@ for item in data:
 		print("Skipped an incomplete error...")
 		continue
 
+# TODO: Make this smarter, take flags.
+
+if len(argv) == 2:
+	print("Writing to file")
+	output_file = open(argv[1], 'w')
+	output_file.write(json.dumps(new_set, indent=4))
+	print("Done")
+else:
+	print("Assuming debug run")
+	error = original_count - len(new_set)
+	print("Skipped %d records" % error)
+	print("Sample item:")
+	print(json.dumps(new_set[1], indent=4))
