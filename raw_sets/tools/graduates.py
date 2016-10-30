@@ -18,10 +18,7 @@ for item in data:
 		# Create a new location set
 		new_item['location'] = {
 			'city': address_set['city'],
-			'coordinates': {
-				'latitude': item['location_1']['latitude'],
-				'longitude': item['location_1']['longitude']
-			}
+			'coordinates': [item['location_1']['latitude'], item['location_1']['longitude']],
 		}
 		# Delete useless keys then merge
 		del item['location_1']

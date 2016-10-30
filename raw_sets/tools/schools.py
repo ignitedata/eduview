@@ -3,7 +3,7 @@ import json
 import requests
 import ast
 
-gf = open("../schools.json", 'r')
+gf = open("../originals/schools.json", 'r')
 data = json.loads(gf.read())
 
 new_set = []
@@ -18,8 +18,7 @@ for item in data:
 		new_item['name'] = item['escuela']
 		new_item['level'] = item['nivel']
 		new_item['location'] = {
-			'latitude': item['direccion_fisica_zipcode']['latitude'],
-			'longitude': item['direccion_fisica_zipcode']['longitude'],
+			'coordinates': [item['direccion_fisica_zipcode']['latitude'], item['direccion_fisica_zipcode']['longitude']],
 			'municipality': item['direccion_fisica_pueblo'],
 			'zip': human_address_parse['zip'],
 			'region': item['region'],
@@ -50,7 +49,8 @@ for item in data:
 
 		new_set.append(new_item)
 		print("%s items processed" % len(new_set))
-	except KeyError:
+	except KeyError as e:
+		print(e)
 		print("Skipped an incomplete item...")
 		continue
 
