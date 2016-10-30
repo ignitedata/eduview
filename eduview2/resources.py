@@ -1,9 +1,26 @@
+from flask import Response, jsonify
 from flask_restful import Resource, abort
+from pymongo import MongoClient
+from bson.json_util import dumps
 from . import models
 
-class SchoolResource(Resource):
-	def get(self, id=None):
-		return self.get_school(10017)
+client = MongoClient()
+db = client.datasets
 
-	def get_school(self, sid):
-		return models.get_by_id(sid)
+schools = models.Schools(db)
+graduates = models.Graduates(db)
+
+class SchoolsResource(Resource):
+	def get(self, sid=None):
+		return jsonify(self.get_data())
+
+	def get_data(self):
+		return "Ayylmao"
+
+class SchoolResource(Resource):
+	def get(self, sid=None):
+		return jsonify(schools.for_id(sid))
+
+class SchoolGraduatesResource(Resource):
+	def get(self, sid=None):
+		return jsonify(list(graduates.for_school(sid)))

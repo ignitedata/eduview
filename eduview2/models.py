@@ -1,10 +1,13 @@
-from pymongo import MongoClient
+class Schools:
+	def __init__(self, db):
+		self.schools = db.schools
 
-client = MongoClient()
-db = client.datasets
+	def for_id(self, sid):
+		return self.schools.find_one({'id': sid}, {'_id': False})
 
-schools = db.schools
-graduates = db.graduates
+class Graduates:
+	def __init__(self, db):
+		self.graduates = db.graduates
 
-def get_by_id(sid):
-	return schools.find_one({'id': sid})
+	def for_school(self, sid):
+		return self.graduates.find({'school_data.id': sid}, {'_id': False})
