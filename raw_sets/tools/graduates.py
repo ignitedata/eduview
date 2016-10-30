@@ -18,15 +18,15 @@ for item in data:
 		# Create a new location set
 		new_item['location'] = {
 			'city': address_set['city'],
-			'coordinates': [item['location_1']['latitude'], item['location_1']['longitude']],
+			'coordinates': [float(item['location_1']['latitude']), float(item['location_1']['longitude'])],
 		}
 		# Delete useless keys then merge
 		del item['location_1']
 		del item['calendario']
 		# Merge keys 
 		# TODO: Refactor
-		new_item['igs'] = item['igs']
-		new_item['gpa'] = item['gpa']
+		new_item['igs'] = float(item['igs'])
+		new_item['gpa'] = float(item['gpa'])
 		new_item['program'] = item['program']
 		new_item['campus'] = item['campus']
 		new_item['school'] = item['institucion_de_procedencia'][8:]

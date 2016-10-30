@@ -49,7 +49,7 @@ print("%d records were matched by ftxrc/PulseData Matcher2(c)." % count)
 percent = (count / original_count) * 100
 print("%d percent of records could be matched using the algorithm." % percent)
 echo = input("Print data? [Y/n] ")
-
+print(graduates[1])
 if len(argv) == 2:
 	print("Writing to file")
 	output_file = open(argv[1], 'w')

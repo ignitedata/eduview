@@ -14,11 +14,11 @@ for item in data:
 	try:
 		new_item = {}
 		human_address_parse = ast.literal_eval(item['direccion_fisica_zipcode']['human_address'])
-		new_item['id'] = item['codigo']
+		new_item['id'] = int(item['codigo'])
 		new_item['name'] = item['escuela']
 		new_item['level'] = item['nivel']
 		new_item['location'] = {
-			'coordinates': [item['direccion_fisica_zipcode']['latitude'], item['direccion_fisica_zipcode']['longitude']],
+			'coordinates': [float(item['direccion_fisica_zipcode']['latitude']), float(item['direccion_fisica_zipcode']['longitude'])],
 			'municipality': item['direccion_fisica_pueblo'],
 			'zip': human_address_parse['zip'],
 			'region': item['region'],
