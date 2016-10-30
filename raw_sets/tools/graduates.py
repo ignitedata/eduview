@@ -32,7 +32,7 @@ for item in data:
 		new_item['gpa'] = item['gpa']
 		new_item['program'] = item['program']
 		new_item['campus'] = item['campus']
-		new_item['escuela'] = item['institucion_de_procedencia'][8:]
+		new_item['school'] = item['institucion_de_procedencia'][8:]
 		# Push to list
 		new_set.append(new_item)
 		print("%s items processed" % len(new_set))
