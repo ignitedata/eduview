@@ -7,3 +7,8 @@ We cannot assure that these will be up-to-date with all the parser changes.
 2. **graduates.json** > virgin, structured set, non-matched. only restructured
 3. **graduates-matched.json** > matched graduates set by matcher2
 3. **schools.json** > schools directory, precompiled w schools.py
+
+### Importing to MongoDB
+
+  mongoimport --jsonArray --db datasets --collection graduates --drop --file graduates-matched.json
+  mongoimport --jsonArray --db datasets --collection schools --drop --file schools.json
