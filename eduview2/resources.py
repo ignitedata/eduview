@@ -39,3 +39,12 @@ class SchoolGraduatesResource(Resource):
 	def get(self, sid):
 		data = list(graduates.find({'school_data.id': sid}, {'_id': False}))
 		return filters.to_json(data)
+
+class MunicipalitiesResource(Resource):
+	pass
+
+class MunicipalityResource(Resource):
+	pass
+
+class AcademicRankingResource(Resource):
+	pass
