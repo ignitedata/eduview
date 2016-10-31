@@ -8,7 +8,7 @@ api = Api(app)
 
 app.json_encoder = encoders.MongoJSONEncoder
 
-api.add_resource(resources.SchoolsResource, '/schools')
+api.add_resource(resources.SchoolsResource, '/schools/')
 api.add_resource(resources.SchoolResource, '/schools/<int:sid>')
 api.add_resource(resources.SchoolGraduatesResource, '/schools/<int:sid>/graduates')
 
