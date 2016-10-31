@@ -1,5 +1,5 @@
 # eduview2 sets and tools
-In this folder you will find working, precompiled datasets for use with eduview. Keep in mind the compilation process for several datasets can take from seconds to minutes depending on your hardware. It is preferable to use the tools folder and compile your own versions, however.
+In this folder you will find working, precompiled datasets for use with eduview. Keep in mind the compilation process for several datasets can take from 30 seconds to 20 minutes depending on your hardware. It is preferable to use the tools folder and compile your own versions, however.
 We cannot assure that these will be up-to-date with all the parser changes.
 
 ### Directory
