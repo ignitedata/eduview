@@ -1,26 +1,41 @@
-from flask import Response, jsonify
-from flask_restful import Resource, abort
+from flask import Response, request
+from flask_restful import Resource, abort, reqparse
 from pymongo import MongoClient
 from bson.json_util import dumps
-from . import models
+from . import filters
 
 client = MongoClient()
 db = client.datasets
 
-schools = models.Schools(db)
-graduates = models.Graduates(db)
+schools = db.schools
+graduates = db.graduates
+
+parser = reqparse.RequestParser()
+parser.add_argument('offset', type=int, location='args')
 
 class SchoolsResource(Resource):
-	def get(self, sid=None):
-		return jsonify(self.get_data())
+	def get(self):
+		# Parse offset
+		args = parser.parse_args()
+		# Query MongoDB
+		data = schools.find({}, {'_id': False})
+		# Set a default limit for the API
+		data = data.limit(5)
 
-	def get_data(self):
-		return "Ayylmao"
+		if args['offset']:
+			data = data.skip(args['offset'])
+
+		# Typecast the list to prevent circular ref errors
+		return filters.to_json(list(data))
 
 class SchoolResource(Resource):
-	def get(self, sid=None):
-		return jsonify(schools.for_id(sid))
+	def get(self, sid):
+		data = [schools.find_one({'id': sid}, {'_id': False})]
+		if data == []:
+			abort(404)
+		return filters.to_json(data)
 
 class SchoolGraduatesResource(Resource):
-	def get(self, sid=None):
-		return jsonify(list(graduates.for_school(sid)))
+	def get(self, sid):
+		data = list(graduates.find({'school_data.id': sid}, {'_id': False}))
+		return filters.to_json(data)
