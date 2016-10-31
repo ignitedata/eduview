@@ -27,9 +27,6 @@ for item in data:
 				'educative_region': item['municipio_escolar'],
 			}
 		}
-		new_item['performance'] = {
-			'prestige': item['clasificacion_flex'],
-		}
 		new_item['information'] = {
 			'grades': item['grado'],
 			'performance': {
@@ -39,12 +36,6 @@ for item in data:
 				'director': item['director']
 			},
 			'phone': item['telefono_1']
-		}
-		new_item['administration'] = {
-			'director': item['director']
-		}
-		new_item['contact'] = {
-			'telefono': item['telefono_1']
 		}
 
 		new_set.append(new_item)
