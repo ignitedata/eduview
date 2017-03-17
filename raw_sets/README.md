@@ -10,5 +10,5 @@ We cannot assure that these will be up-to-date with all the parser changes.
 
 ### Importing to MongoDB
 
-    mongoimport --jsonArray --db datasets --collection graduates --drop --file graduates-matched.json
+    mongoimport --jsonArray --db datasets --collection graduates --drop --file graduates_matched.json
     mongoimport --jsonArray --db datasets --collection schools --drop --file schools.json
